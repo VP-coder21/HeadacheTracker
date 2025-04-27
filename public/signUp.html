@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headache Tracker SignUp</title>
+    <style>
+         .center {
+          margin: auto;
+          text-align: center;
+          font-size: 100%;
+        }
+        .spacer {
+            box-sizing: border-box;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-block: 25px;
+            font-size: 2.5em;
+        }
+        .signUpAlign {
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            margin-block: 10px;
+            font-size: 3.5em;
+            border-radius: 5px;
+        }
+        .headerAlign{
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 5em;
+        }
+        .logInAlign {
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.5em;
+            border-radius: 2.5px;
+        }
+    </style> 
+</head>
+<body style="background-color:rgb(202, 229, 232);">
+    <form method = "post" action="/register" class = "center">    
+
+         <!--Replace with logo later-->
+         <h1 class="headerAlign">Headache Tracker</h1>
+
+         <!-- Input boxes for Sign Up -->
+    
+        <input type="text" id="usernameS" name="SignUpBox" placeholder="Username" class="spacer">
+        <br>
+        <input type="password" id="passwordS" name="SignUpBox" placeholder="Password" class="spacer">
+        <br>
+        <button class="signUpAlign">Sign Up</button>
+        <hr>
+        <h1>Already Have an Account</h1>
+        <br>
+    </form>
+    <div class="center"> 
+        <button onclick="window.location.href='/'" class="logInAlign">Log In</button>
+    </div>
+</body>
+</html>

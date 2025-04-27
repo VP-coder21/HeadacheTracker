@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headache Tracker Login</title>
+    <style>
+
+        hr {
+            border: 3px solid grey;
+            border-radius: 4px;
+            width: 95%;
+        }
+
+        .switchContainer {
+            width: 60%;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+
+        .active {
+            background-color: lightgrey;
+        }
+        .switch:not(.active){
+            background-color: white;
+        }
+        .switch {
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid black;
+            cursor: pointer;
+            width:calc(50% - 10px);
+            border-radius: 5px;
+            font-size: 250%;
+        }
+
+        .center {
+            margin: auto;
+            text-align: center;
+        }
+
+        .spacer {
+            box-sizing: border-box;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-block: 25px;
+            font-size: 2.5em;
+        }
+
+        .loginAlign {
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            margin-block: 10px;
+            font-size: 3em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .signUpAlign {
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.5em;
+            border-radius: 2.5px;
+        }
+
+        .headerAlign {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 5em;
+        }
+    </style>
+</head>
+
+<body style="background-color:rgb(202, 229, 232);">
+    <div class=center>
+        <!--Replace with logo later-->
+        <h1 class="headerAlign">Headache Tracker</h1>
+
+        <!-- Switch Between Sign Up and Login -->
+        <div class="switchContainer center">
+            <button class="switch active">Log In</button>
+            <button class="switch">Sign Up</button>
+        </div>
+
+    </div>
+    <form method="post" action="/login" class="center">
+
+
+
+        <!-- Input boxes for Login -->
+        <input type="text" id="usernameL" name="LoginBox" placeholder="Username" class="spacer">
+        <br>
+        <input type="password" id="passwordL" name="LoginBox" placeholder="Password" class="spacer">
+        <br>
+        <input type="submit" class="loginAlign" value="Log In"></input>
+        <hr>
+        <h1>Don't Have an Account</h1>
+        <br>
+    </form>
+    <div class="center">
+        <button onclick="window.location.href='/signup'" class="signUpAlign">Sign Up</button>
+    </div>
+
+</body>
+
+</html>

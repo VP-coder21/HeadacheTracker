@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headache Tracker Homepage</title>
+    <style>
+        .center {
+            margin: auto;
+             text-align: center;
+             font-size: 100%;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            width:calc(25% - 0.75px);
+            float: left;
+            border-right: 1px solid #bbb;
+            font-size: large;
+        }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+        background-color: #111;
+        }
+
+        .active {
+            background-color: #04AA6D;
+        }
+        /* .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 40px;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            right: 0;
+        } */
+    </style>
+</head>
+<body>
+    <!--Navigation Bar-->
+    <ul>
+        <li><a  class = "active" href="/homepage">Home</a></li>
+        <li><a href="/analyze">Analyze</a></li>
+        <li><a href="/calender">Calender</a></li>
+        <li><a href="/profile">Profile</a></li>
+    </ul>
+    <div class = "center"> 
+        <h1>Recent Headaches</h1>
+
+        <button>Record Headaches</button>
+    </div>
+</body>
+</html>
