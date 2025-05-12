@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Headache Tracker Login</title>
     <style>
-
         hr {
             border: 3px solid grey;
             border-radius: 4px;
@@ -15,8 +14,6 @@
 
         .switchContainer {
             width: 60%;
-            border: 2px solid black;
-            border-radius: 4px;
             padding: 10px;
         }
 
@@ -24,15 +21,17 @@
         .active {
             background-color: lightgrey;
         }
-        .switch:not(.active){
+
+        .switch:not(.active) {
             background-color: white;
         }
+
         .switch {
             display: inline-block;
             padding: 10px;
             border: 2px solid black;
             cursor: pointer;
-            width:calc(50% - 10px);
+            width: calc(50% - 10px);
             border-radius: 5px;
             font-size: 250%;
         }
@@ -51,6 +50,18 @@
             font-size: 2.5em;
         }
 
+        .signUp {
+            display: none;
+            position: relative;
+            margin: auto;
+        }
+
+        .logIn {
+            display: block;
+            position: relative;
+            margin: auto;
+        }
+
         .loginAlign {
             box-sizing: border-box;
             margin-left: auto;
@@ -61,18 +72,16 @@
             cursor: pointer;
         }
 
-        .signUpAlign {
-            box-sizing: border-box;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 1.5em;
-            border-radius: 2.5px;
-        }
-
         .headerAlign {
             margin-left: auto;
             margin-right: auto;
             font-size: 5em;
+        }
+
+        .fullHolder {
+            border: 4px solid black;
+            border-radius: 4px;
+            position: relative;
         }
     </style>
 </head>
@@ -82,29 +91,53 @@
         <!--Replace with logo later-->
         <h1 class="headerAlign">Headache Tracker</h1>
 
+    </div>
+    <div class= "center fullHolder">
+
+        <script>
+            function setSUVisible(element){
+                document.getElementById('SU').style.display = "block"
+                document.getElementById('LI') .style.display = "none"
+                element.classList.add('active')
+                document.getElementById('LIB').classList.remove('active')
+            }
+
+            function setLIVisible(element){
+                document.getElementById('SU').style.display = "none"
+                document.getElementById('LI') .style.display = "block"
+                element.classList.add('active')
+                document.getElementById('SUB').classList.remove('active')
+            }
+        </script>
+
         <!-- Switch Between Sign Up and Login -->
         <div class="switchContainer center">
-            <button class="switch active">Log In</button>
-            <button class="switch">Sign Up</button>
+            <button onclick="setLIVisible(this)" class="switch active" id="LIB">Log In</button>
+            <button onclick="setSUVisible(this)" class="switch" id="SUB">Sign Up</button>
         </div>
 
-    </div>
-    <form method="post" action="/login" class="center">
+        <form method="post" action="/register" class="signUp" id = "SU">
 
+            <!-- Input boxes for Sign Up -->
 
+            <input type="text" id="usernameS" name="SignUpBox" placeholder="Username" class="spacer">
+            <br>
+            <input type="password" id="passwordS" name="SignUpBox" placeholder="Password" class="spacer">
+            <br>
+            <input type="submit" class="loginAlign" value="Sign Up"></input>
+        </form>
 
-        <!-- Input boxes for Login -->
-        <input type="text" id="usernameL" name="LoginBox" placeholder="Username" class="spacer">
-        <br>
-        <input type="password" id="passwordL" name="LoginBox" placeholder="Password" class="spacer">
-        <br>
-        <input type="submit" class="loginAlign" value="Log In"></input>
-        <hr>
-        <h1>Don't Have an Account</h1>
-        <br>
-    </form>
-    <div class="center">
-        <button onclick="window.location.href='/signup'" class="signUpAlign">Sign Up</button>
+        <form method="post" action="/login" class="logIn" id ="LI">
+
+            <!-- Input boxes for Login -->
+
+            <input type="text" id="usernameL" name="LoginBox" placeholder="Username" class="spacer">
+            <br>
+            <input type="password" id="passwordL" name="LoginBox" placeholder="Password" class="spacer">
+            <br>
+            <input type="submit" class="loginAlign" value="Log In"></input>
+        </form>
+
     </div>
 
 </body>

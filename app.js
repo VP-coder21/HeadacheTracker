@@ -12,10 +12,6 @@ app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '/public/login.html'));
 });
 
-app.get('/signup', (req,res) => {
-    res.sendFile(path.join(__dirname, '/public/signUp.html'));
-});
-
 app.route('/login').post((req,res) => {
     res.redirect('/homepage');
 });
@@ -39,9 +35,6 @@ app.get('/calender', (req,res) => {
 app.get('/profile', (req,res) => {
     res.sendFile(path.join(__dirname, '/public/profile.html'));
 });
-
-
-
 
 
 app.listen(port, () => {
