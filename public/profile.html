@@ -44,6 +44,12 @@
         .active {
             background-color: #04AA6D;
         }
+
+        .buttonLayout {
+            padding: 5px;
+            font-size: medium;
+            margin-block: 10px;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +61,13 @@
         <li><a class = "active" href="/profile">Profile</a></li>
     </ul>
     <div class = "center"> 
-        <button onclick="window.location.href='/'">Logout</button>
+        <img src="assets/PlaceholderImage.png" alt="Profile Picture" width="250" height="250"></img>
+        <h2>Username: </h2>
+        <h2>Password: </h2>
+        <button class = "buttonLayout">Terms and Conditions</button>
+        <hr>
+        <button class= "buttonLayout" onclick="window.location.href='/'">Logout</button>
+        <button class= "buttonLayout">Delete Account</button>
     </div>
 </body>
 </html>
