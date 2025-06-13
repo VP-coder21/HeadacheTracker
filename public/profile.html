@@ -44,6 +44,22 @@
         .active {
             background-color: #04AA6D;
         }
+
+        .buttonLayout {
+            padding: 5px;
+            font-size: medium;
+            margin-block: 10px;
+        }
+
+        .leftSide {
+            margin: auto;
+            width: 20%;
+            text-align: left;
+        }
+
+        .smallBottomPadding {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +71,24 @@
         <li><a class = "active" href="/profile">Profile</a></li>
     </ul>
     <div class = "center"> 
-        <button onclick="window.location.href='/'">Logout</button>
+        <img src="assets/PlaceholderImage.png" alt="Profile Picture" width="250" height="250"></img>
+        <h2>Username: </h2>
+        <h2>Password: </h2>
+        <form method="post" class="leftSide" action="/settings">
+            <h2 class="smallBottomPadding" >Color Theme:</h2>
+            <input type ="radio" name="color_theme" id="light"  value="light">
+            <label for="light">Light</label><br>
+            <input type ="radio" name="color_theme" id="dark" value="dark">
+            <label for="dark">Dark</label><br>
+            <input type ="radio" checked name="color_theme" id="systemDefault" value="systemDefault">
+            <label for="systemDefault">Sytsem Default</label><br>
+            
+            <input type ="submit" value="Save Changes"></input>
+        </form>
+        <button class = "buttonLayout">Terms and Conditions</button>
+        <hr>
+        <button class= "buttonLayout" onclick="window.location.href='/'">Logout</button>
+        <button class= "buttonLayout">Delete Account</button>
     </div>
 </body>
 </html>
