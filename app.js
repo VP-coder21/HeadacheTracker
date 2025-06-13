@@ -20,6 +20,10 @@ app.route('/register').post((req,res) => {
     res.redirect('/homepage');
 });
 
+app.route('/settings').post((req,res) => {
+    res.redirect('/profile');
+});
+
 app.get('/homepage', (req,res) => {
     res.sendFile(path.join(__dirname, '/public/homepage.html'));
 });
