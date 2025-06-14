@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Headache Tracker Login</title>
-    <style>
+    <style type="text/css" media="screen">
+        
         hr {
             border: 3px solid grey;
             border-radius: 4px;
@@ -20,6 +22,16 @@
 
         .active {
             background-color: lightgrey;
+        }
+
+        .alert{
+            margin:auto;
+            margin-bottom: -10px;
+            font-size: large;
+            background-color: lightcoral;
+            border: 1px, solid , red;
+            width: 50%;
+            border-radius: 5px;
         }
 
         .switch:not(.active) {
@@ -43,7 +55,7 @@
 
         .spacer {
             box-sizing: border-box;
-            width: 40%;
+            width: 60%;
             margin-left: auto;
             margin-right: auto;
             margin-block: 25px;
@@ -120,20 +132,28 @@
 
             <!-- Input boxes for Sign Up -->
 
-            <input type="text" id="usernameS" name="SignUpBox" placeholder="Username" class="spacer">
+
+            <input type="email" id="emailS" name="email" placeholder="Email Address" class="spacer">
             <br>
-            <input type="password" id="passwordS" name="SignUpBox" placeholder="Password" class="spacer">
+            <input type="text" id="usernameS" name="username" placeholder="Username" class="spacer">
+            <br>
+            <input type="password" id="passwordS" name="password" placeholder="Password" class="spacer">
             <br>
             <input type="submit" class="loginAlign" value="Sign Up"></input>
         </form>
 
         <form method="post" action="/login" class="logIn" id ="LI">
-
+            
+            <% if (messages.error) { %>
+                <div class="alert">
+                <strong><%= messages.error%></strong>
+            </div><!--Display Errors-->
+            <% } %>
             <!-- Input boxes for Login -->
 
-            <input type="text" id="usernameL" name="LoginBox" placeholder="Username" class="spacer">
+            <input type="email" id="emailL" name="email" placeholder="Email Address" class="spacer">
             <br>
-            <input type="password" id="passwordL" name="LoginBox" placeholder="Password" class="spacer">
+            <input type="password" id="passwordL" name="password" placeholder="Password" class="spacer">
             <br>
             <input type="submit" class="loginAlign" value="Log In"></input>
         </form>

@@ -74,7 +74,7 @@
         <img src="assets/PlaceholderImage.png" alt="Profile Picture" width="250" height="250"></img>
         <h2>Username: </h2>
         <h2>Password: </h2>
-        <form method="post" class="leftSide" action="/settings">
+        <form method="post" class="leftSide" action="/profile">
             <h2 class="smallBottomPadding" >Color Theme:</h2>
             <input type ="radio" name="color_theme" id="light"  value="light">
             <label for="light">Light</label><br>
@@ -85,9 +85,12 @@
             
             <input type ="submit" value="Save Changes"></input>
         </form>
+    
         <button class = "buttonLayout">Terms and Conditions</button>
         <hr>
-        <button class= "buttonLayout" onclick="window.location.href='/'">Logout</button>
+        <form action="/logout?_method=delete" method="post">
+            <button class= "buttonLayout" type="submit">Logout</button>
+        </form>
         <button class= "buttonLayout">Delete Account</button>
     </div>
 </body>
