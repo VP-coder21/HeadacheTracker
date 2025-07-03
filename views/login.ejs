@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Headache Tracker Login</title>
-    <style>
+    <style type="text/css" media="screen">
+        
         hr {
             border: 3px solid grey;
             border-radius: 4px;
@@ -20,6 +22,16 @@
 
         .active {
             background-color: lightgrey;
+        }
+
+        .alert{
+            margin:auto;
+            margin-bottom: -10px;
+            font-size: large;
+            background-color: lightcoral;
+            border: 1px, solid , red;
+            width: 50%;
+            border-radius: 5px;
         }
 
         .switch:not(.active) {
@@ -43,7 +55,7 @@
 
         .spacer {
             box-sizing: border-box;
-            width: 40%;
+            width: 60%;
             margin-left: auto;
             margin-right: auto;
             margin-block: 25px;
@@ -86,7 +98,7 @@
     </style>
 </head>
 
-<body style="background-color:rgb(202, 229, 232);">
+<body style="background-color:rgb(202, 229, 232);" onload= <% if(renderSignUp) { %>"StartAtSU()" <%}%> >
     <div class=center>
         <!--Replace with logo later-->
         <h1 class="headerAlign">Headache Tracker</h1>
@@ -95,6 +107,13 @@
     <div class= "center fullHolder">
 
         <script>
+            function StartAtSU(){
+                document.getElementById('SU').style.display = "block"
+                document.getElementById('LI') .style.display = "none"
+                document.getElementById('SUB').classList.add('active')
+                document.getElementById('LIB').classList.remove('active')
+            }
+
             function setSUVisible(element){
                 document.getElementById('SU').style.display = "block"
                 document.getElementById('LI') .style.display = "none"
@@ -117,23 +136,39 @@
         </div>
 
         <form method="post" action="/register" class="signUp" id = "SU">
+            <!--Display Errors-->
+            <% if (messages.errorS) { %>
+                <div class="alert">
+                <strong><%= messages.errorS%></strong>
+            </div>
+            <% } %>
+
 
             <!-- Input boxes for Sign Up -->
 
-            <input type="text" id="usernameS" name="SignUpBox" placeholder="Username" class="spacer">
+            <input type="email" id="emailS" name="email" placeholder="Email Address" class="spacer">
             <br>
-            <input type="password" id="passwordS" name="SignUpBox" placeholder="Password" class="spacer">
+            <input type="text" id="usernameS" name="username" placeholder="Username" class="spacer">
+            <br>
+            <input type="password" id="passwordS" name="password" placeholder="Password" class="spacer">
             <br>
             <input type="submit" class="loginAlign" value="Sign Up"></input>
         </form>
 
         <form method="post" action="/login" class="logIn" id ="LI">
-
+            
+            <!--Display Errors-->
+            <% if (messages.errorL) { %>
+                <div class="alert">
+                <strong><%= messages.errorL%></strong>
+            </div>
+            <% } %>
+            
             <!-- Input boxes for Login -->
 
-            <input type="text" id="usernameL" name="LoginBox" placeholder="Username" class="spacer">
+            <input type="email" id="emailL" name="email" placeholder="Email Address" class="spacer">
             <br>
-            <input type="password" id="passwordL" name="LoginBox" placeholder="Password" class="spacer">
+            <input type="password" id="passwordL" name="password" placeholder="Password" class="spacer">
             <br>
             <input type="submit" class="loginAlign" value="Log In"></input>
         </form>
