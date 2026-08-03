@@ -5,7 +5,7 @@ const User = require('../models/User');
 module.exports = function(app, passport){
 
 //Routes
-
+    //registerstration base code 
     app.post('/register',(req, res) => {
     let {username, email, password} = req.body
 
@@ -23,7 +23,7 @@ module.exports = function(app, passport){
         req.flash('errorS', "Invalid Email Entered")
         res.redirect('/signUp')
     } else if(password.length < 8) {
-        req.flash('errorS', "Password Is Too Short")
+        req.flash('errorS', "Password Must Be 8 Characters Or Longer")
         res.redirect('/signUp')
     } else{
         //Checking if user already exists
@@ -55,7 +55,7 @@ module.exports = function(app, passport){
         })
     }
     })
-
+    //login base code
     app.post('/login', isLoggedIn, (req, res) => {
     let {email, password} = req.body
 
@@ -97,10 +97,10 @@ module.exports = function(app, passport){
     });
 
     app.get('/homepage', isLoggedOut, (req,res) => {
-        // console.log(req.user.password)
-        res.render("homepage.ejs");
+        username = req.user.username
+        // console.log(username)
+        res.render("homepage.ejs", {name: username});
     });
-    //{name: } ^^^^. Add back when authentication is done
 
     app.get('/analyze', isLoggedOut,(req,res) => {
         res.render("analyze.ejs");
