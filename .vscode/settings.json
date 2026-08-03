@@ -1,4 +1,21 @@
 {
     "files.autoSave": "onFocusChange",
-    "terminal.integrated.tabs.defaultColor": "terminal.ansiBlack"
+    "terminal.integrated.tabs.defaultColor": "terminal.ansiBlack",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "HeadacheDataStorage",
+            "username": "root",
+            "database": "headachedb",
+            "password": "xxgX6q4jIiJ#"
+        }
+    ]
 }
