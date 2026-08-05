@@ -1,6 +1,7 @@
 //Set Up
 
 const User = require('../models/User');
+const dbh = require('../config/db');
 
 module.exports = function(app, passport){
 
@@ -42,7 +43,11 @@ module.exports = function(app, passport){
                             res.redirect('/signUp')
                         }
                         passport.authenticate('local')(req, res, function(){
-                            res.redirect('/homepage')
+                            //storing new user id in mysql user
+                            const userId = req.user._id.toString();
+                            // console.log(userId);
+                            dbh.logNewUser(userId);
+                            res.redirect('/homepage');
                         })
                     })
             }
