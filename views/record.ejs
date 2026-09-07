@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headache Tracker Recorder</title>
+    <style>
+        .center {
+            margin: auto;
+            text-align: center;
+        }
+
+        .titleRequest{
+            font-size: xx-large;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .subtext{
+            font-size: x-large;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 0px;
+        }
+
+        .side_by_side_text{
+            font-size: large;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 2px;
+            margin-top: 2px;
+        }
+        
+        .buttonLayout{
+            bottom: 5%; left: 50%; 
+            transform: translateX(-50%); 
+            font-size: 2.5em;
+            border: 4px, solid, #111;
+            background-color: #bbb;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            
+        }
+
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+
+
+        .subcontainerL{
+            width: 85%;
+            text-align: left;
+            margin: auto;
+            margin-top: 0px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .subcontainerC{
+            width: 90%;
+            text-align: center;
+            margin: auto;
+            margin-top: 0px;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: small;
+        }
+
+        /*range classes*/
+        .slider{
+            appearance: none;
+            width: 100%;
+            background: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            
+            &::-webkit-slider-thumb{
+                appearance: none;
+                background: linear-gradient(
+                    to right,
+                    grey 0px calc(50% - 1px),
+                    black calc(50% - 1px) calc(50% + 1px),
+                    grey calc(50% + 1px) 100%
+                );
+                width: 20px;
+                scale: 1 1.4;
+                height: 40px;
+                border-radius: 10px;
+            }
+
+            &::-moz-range-thumb{
+                background: linear-gradient(
+                    to right,
+                    grey 0px calc(50% - 1px),
+                    black calc(50% - 1px) calc(50% + 1px),
+                    grey calc(50% + 1px) 100%
+                );
+                width: 20px;
+                scale: 1 1.4;
+                height: 40px;
+                border-radius: 10px;
+            }
+
+        }
+
+        input[type="range"].snapping {
+            transition: value 0.2s ease-out;
+        }
+
+        .range_wrapper{
+            position: relative;
+            width: 98%;
+            display:flex;
+            align-items: center;
+            height: 30px;
+            margin: auto;
+            margin-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        .visual_track{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;
+            height: 30px;
+            border-radius: 15px;
+
+            background: linear-gradient(
+                to right,
+                green,
+                red
+            );
+            
+
+            display: flex;
+            justify-content: space-between;
+
+            padding: 0 10px;
+            box-sizing: border-box;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .visual_track span{
+            width: 4px;
+            background-color: #bbb;
+            border-radius: 2px;
+            margin-top: -5px;
+            margin-bottom: -5px;
+        }
+        
+
+
+        /* .range_value{
+            position:absolute;
+            inset: 0;
+            width: 97%;
+            background: repeating-linear-gradient(
+                to right,
+                yellow 0dvw 0.15dvw,
+                transparent 0.15dvw 8dvw
+            );
+            margin: auto;
+            margin-bottom: 0px;
+            margin-top: 15px;
+            pointer-events: none;
+            transform-origin: 0% 50%;
+        } */
+
+        .labels-below {
+            display: flex;
+            justify-content: space-between; 
+            color: #555;
+            margin-top: 0px;
+        }
+
+        .side_by_side{
+            flex: 1;
+            text-align: left;
+        }
+        .side_by_sideC{
+            flex: 1;
+            text-align: center;
+        }
+
+/* class for scrolling bar */
+        .container{
+            width: 95%;
+            text-align: left;
+            margin-bottom: 0%;
+            margin: auto;
+            background-color: #e6e5e5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .questions{
+            height: 85dvh;
+            padding-left: 1%;
+            padding-right: 2%;
+            overflow-y: auto;
+        }
+
+        .questions::-webkit-scrollbar{
+            width: 20px;
+            background-color: #bbb;
+        }
+
+        .questions::-webkit-scrollbar-thumb{
+            background-color: black;
+            border-radius: 5px;
+        }
+
+        .smallTextbox{
+            margin-top: 10px;
+            font-size: medium;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <h1 class = "center titleRequest">Please enter information about recent headache:</h1>
+    <hr>
+    <form class="container">
+        <div class="questions">
+            <!--Start of Duration Part-->
+            <h2 class = "subtext">Duration</h2>
+            <div class = "subcontainerL">
+                <div class = "side_by_side subcontainerL">
+                    <label for="start_date" class="side_by_side_text">Start Date:</label>
+                    <input type="date" id = "start_date" name="date_selector">
+                    <input type="time" id = "start_time" name="time_selector">
+                </div>
+                <div class = "side_by_side subcontainerL">
+                    <label for="end_date" class="side_by_side_text">End Date:</label>
+                    <input type="date" id = "end_date" name="date_selector">
+                    <input type="time" id = "end_time" name="time_selector">
+                </div>
+            </div>
+            <hr>
+            <!--End of Duration Part-->
+            
+            <!--Start of Severity Part-->
+            <h2 class = "subtext">Severity</h2>
+            <div class = "subcontainerC">
+                <div class="range_wrapper">
+                    <div class="visual_track">
+                        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+                    </div>
+                    <input value="0" step="any" class="slider" type="range" id = "severity" min="1" max="10" >
+                </div>
+                <div class="labels-below">
+                    <h4>Least <br>Severe</h4>
+                    <h4>Most <br>Severe</h4>
+                </div>
+            </div>
+            <hr>
+            <!--End of Severity Part-->
+
+            <!--Start of LOP Part-->
+            <h2 class = "subtext">Location of Pain</h2>
+            <div class = "subcontainerL">
+                <datalist id="possible_locations">
+                    <option value = "Front of head"></option>
+                    <option value = "Back of head"></option>
+                    <option value = "Both sides of head"></option>
+                    <option value = "Left side of head"></option>
+                    <option value = "Right side of head"></option>
+                    <option value = "Top of face"></option>
+                    <option value = "Left of face"></option>
+                    <option value = "Right of face"></option>
+                    <option value = "Nasal"></option>
+                </datalist>
+                <input list="possible_locations" placeholder="Ex. Front of head" class = "smallTextbox" id = "location_of_pain" maxlength="255" type="text" size="30" spellcheck="true" autocomplete="on">
+            </div>
+            <hr>
+            <!--End of LOP Part-->
+
+            <!--Start of Occurence Info Part-->
+            <h2 class = "subtext">Occurence Information</h2>
+            <div class = "subcontainerL">
+                <div class = "side_by_side subcontainerL">
+                    <textarea id = "start_occurence" rows="np"></textarea>
+                </div>
+                <div class = "side_by_side subcontainerL">
+                    <textarea></textarea>
+                </div>
+            </div>
+            <hr>
+            <!--End of Occurence Info Part-->
+        </div>
+        <div class="side_by_sideC">
+            <button class="buttonLayout" type="submit">Submit</button>
+            <button class="buttonLayout"> <a href="/homepage">Cancel</a></button>
+        </div>
+        
+    </form>
+    <script>
+        //preventing future dates for date picker
+        function PreventFutureDates(){
+            const today = new Date();
+            const year = String(today.getFullYear());
+            const month = String(today.getMonth()+1).padStart(2,0);
+            const day = String(today.getDate()).padStart(2,0);
+
+            const formattedToday = `${year}-${month}-${day}`;
+            const numDateSelectors = document.getElementsByName('date_selector');
+            
+            for (const element of numDateSelectors){
+                element.setAttribute('max', formattedToday);
+            }
+        }
+        PreventFutureDates()
+
+        //making slider be smooth to slide, but lock on to correct values
+        const slider = document.getElementById('severity')
+        const snapValues = [1,2,3,4,5,6,7,8,9,10]
+
+        function closestSnapValue(currentVal, targets){
+            const prev = Math.trunc(currentVal);
+            const curr = prev+1;
+            if(Math.abs(curr-currentVal) < Math.abs(prev-currentVal)){
+                return curr;
+            }
+            else{
+                return prev;
+            }
+        }
+
+        slider.addEventListener('change', (e) =>{
+            const currentValue = parseFloat(e.target.value);
+            const closestValue = closestSnapValue(currentValue, snapValues);
+
+            animateSliderTo(slider, closestValue)
+        })
+
+        function animateSliderTo(targetSlider, endValue){
+            const startValue = parseFloat(targetSlider.value);
+            const duration = 200;
+            const startTime = performance.now();
+
+            function step(currentTime){
+                const elapsed = currentTime-startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const slowDown = 1 - Math.pow(1 - progress, 3);
+                const currentValue = startValue + (endValue - startValue) * slowDown;
+
+                targetSlider.value = currentValue
+                if(progress<1){
+                    requestAnimationFrame(step);
+                }else{
+                    targetSlider.value = endValue;
+                }
+            }
+
+            requestAnimationFrame(step)
+        }
+    </script>
+    
+</body>
+</html>
