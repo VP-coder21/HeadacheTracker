@@ -3,8 +3,10 @@
 const User = require('../models/User');
 const dbh = require('../config/db');
 
-module.exports = function(app, passport){
 
+module.exports = function(app, passport, homepageRouter){
+
+    app.use('/homepage', homepageRouter);
 //Routes
     //registerstration base code 
     app.post('/register',(req, res) => {
@@ -106,6 +108,11 @@ module.exports = function(app, passport){
         // console.log(username)
         res.render("homepage.ejs", {name: username});
     });
+
+    homepageRouter.route('/record')
+    .get(isLoggedOut, (req,res) => {
+        res.render('record.ejs')
+    })
 
     app.get('/analyze', isLoggedOut,(req,res) => {
         res.render("analyze.ejs");

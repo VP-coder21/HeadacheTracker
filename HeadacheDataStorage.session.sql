@@ -19,6 +19,9 @@ CREATE TABLE HeadacheEvents(
 );
 
 -- @block
+ALTER TABLE HeadacheEvents ADD is_finished BOOLEAN NOT NULL;
+
+-- @block
 INSERT INTO Users (id, color_preference)
 VALUES (
     'TestUser',

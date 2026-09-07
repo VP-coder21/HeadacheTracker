@@ -19,6 +19,7 @@ require('./config/passport')(passport)
 //Set Up
 const port = process.env.PORT || 3000;
 const app = express();
+const homepageRouter = express.Router();
 
 
 app.use(cookieParser());
@@ -33,7 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'ejs')
 
-require('./api/routes.js')(app, passport);
+require('./api/routes.js')(app, passport, homepageRouter);
 
 app.listen(port, () => {
     console.log("App listening on port " + port)
